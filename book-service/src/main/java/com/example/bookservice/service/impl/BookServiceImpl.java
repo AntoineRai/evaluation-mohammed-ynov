@@ -26,11 +26,20 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book saveBook(Book book) {
+        book.setAvailable(true);
         return bookRepository.save(book);
     }
 
     @Override
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateBookAvailability(Long id, boolean isAvailable) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Livre non trouvé"));
+        book.setAvailable(isAvailable);
+        bookRepository.save(book);
     }
 }

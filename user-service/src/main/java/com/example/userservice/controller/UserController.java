@@ -3,6 +3,7 @@ package com.example.userservice.controller;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +33,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}/lock")
+    public ResponseEntity<Void> lockUser(@PathVariable Long id) {
+        userService.lockUser(id);
+        return ResponseEntity.ok().build();
     }
 }

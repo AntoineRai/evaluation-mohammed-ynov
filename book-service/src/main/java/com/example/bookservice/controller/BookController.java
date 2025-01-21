@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/books")
@@ -31,5 +32,11 @@ public class BookController {
     @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable Long id) {
         bookService.deleteBookById(id);
+    }
+
+    @PutMapping("/{id}/availability/{status}")
+    public ResponseEntity<Void> updateBookAvailability(@PathVariable Long id, @PathVariable boolean status) {
+        bookService.updateBookAvailability(id, status);
+        return ResponseEntity.ok().build();
     }
 }

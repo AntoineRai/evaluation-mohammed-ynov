@@ -11,5 +11,7 @@ public interface BorrowingService {
 
     Borrowing save(Borrowing borrowing);
 
+    void returnBook(Long id);
+
     void deleteById(Long id);
 }
