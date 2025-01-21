@@ -2,6 +2,10 @@ server:
   port: 8090
 
 spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
       routes:
@@ -19,12 +23,6 @@ spring:
           uri: lb://borrowing-service
           predicates:
             - Path=/borrowings/**
-
-          globalcors:
-            corsConfigurations:
-              '[/**]':
-                allowedOrigins: "*"
-                allowedMethods: "*"
 
 eureka:
   client:
